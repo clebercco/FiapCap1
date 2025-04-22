@@ -1,0 +1,18 @@
+[
+    {
+        "id": 2,
+        "produto": "terra",
+        "areaplantio": 10.0,
+        "sementes": 0,
+        "produtividade": 0,
+        "producao": 0
+    },
+    {
+        "id": 2,
+        "produto": "arroz",
+        "areaplantio": 10.0,
+        "sementes": 0,
+        "produtividade": 0,
+        "producao": 0
+    }
+]
