@@ -1,0 +1,31 @@
+# Instalar os pacotes necessários
+install.packages("httr")
+install.packages("jsonlite")
+library(httr)
+library(jsonlite)
+
+# Definir a chave da API e a URL base
+api_key <- "a1e57c27286cecb6ef436979f4f3eec8"  
+base_url <- "http://api.openweathermap.org/data/2.5/weather"
+
+# Função para coletar informações meteorológicas
+obter_clima <- function(cidade) {
+  url <- paste0(base_url, "?q=", cidade, "&appid=", api_key, "&units=metric&lang=pt")
+  resposta <- GET(url)
+  
+  if (status_code(resposta) == 200) {
+    dados <- content(resposta, as = "text", encoding = "UTF-8")
+    dados <- fromJSON(dados)
+    
+    # Exibindo as informações do clima
+    cat("Clima em", dados$name, ":\n")
+    cat("Temperatura:", dados$main$temp, "°C\n")
+    cat("Umidade:", dados$main$humidity, "%\n")
+    cat("Descrição:", dados$weather$description, "\n")
+  } else {
+    cat("Erro ao acessar a API. Verifique a chave ou o nome da cidade.\n")
+  }
+}
+
+# Exemplo de uso
+obter_clima("Cidreira")
